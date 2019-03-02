@@ -2,11 +2,26 @@
 
 namespace WpfSortApplication.SortAlgorithms
 {
+	/// <summary>
+	/// Time Complexity:
+	/// - Worse: O(n^2)
+	/// - Average: Θ(n^2)
+	/// - Best: Ω(n^2)
+	/// Space Complexity: O(1)
+	/// 
+	/// Stable
+	/// 
+	/// </summary>
 	public class SelectionSort : SortAlgorithm
 	{
 		public SelectionSort(ObservableCollection<Item> items)
 			: base(items)
 		{ }
+
+		public override void Reset()
+		{
+			this.currentIndex = 0;
+		}
 
 		public override void Sort()
 		{
@@ -16,22 +31,22 @@ namespace WpfSortApplication.SortAlgorithms
 
 		public override void SortStep()
 		{
-			if (this.currentStep >= Items.Count - 1)
-				this.currentStep = 0;
+			if (this.currentIndex >= Items.Count - 1)
+				this.currentIndex = 0;
 
-			SelectionSortStep(this.currentStep);
+			SelectionSortStep(this.currentIndex);
 
-			this.currentStep++;
+			this.currentIndex++;
 		}
 
-		private void SelectionSortStep(int currentIndex)
+		private void SelectionSortStep(int i)
 		{
-			int minIndex = FindMinIndex(currentIndex);
+			int minIndex = FindMinIndex(i);
 
-			if (minIndex != currentIndex)
+			if (minIndex != i)
 			{
-				Item tempItem = Items[currentIndex];
-				Items[currentIndex] = Items[minIndex];
+				Item tempItem = Items[i];
+				Items[i] = Items[minIndex];
 				Items[minIndex] = tempItem;
 			}
 		}

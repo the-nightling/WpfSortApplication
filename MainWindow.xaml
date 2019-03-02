@@ -36,6 +36,7 @@
 		</ListBox>
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<Button Content="Reset" Command="{Binding ResetCommand}" />
 			<Button Content="Sort" Command="{Binding SortCommand}" />
 			<Button Content="Sort Step" Command="{Binding SortStepCommand}" />
 		</StackPanel>
