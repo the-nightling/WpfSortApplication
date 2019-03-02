@@ -1,16 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using WpfSortApplication.SortAlgorithms;
 
 namespace WpfSortApplication
 {
-	public class MainWindowViewModel
+	public enum Algorithm
+	{
+		SelectionSort,
+		InsertionSort,
+		BubbleSort,
+		TreeSort
+	}
+
+	public class MainWindowViewModel : INotifyPropertyChanged
 	{
 		private const int NumberOfItems = 20;
 		private readonly List<Item> initialCollection;
+		private Algorithm selectedAlgorithm;
 		private SortAlgorithm sortAlgorithm;
+		private readonly Func<bool> canExecuteSortStep;
 
 		public MainWindowViewModel()
 		{
@@ -27,11 +39,10 @@ namespace WpfSortApplication
 
 			ResetCommand = new RelayCommand((_) => Reset());
 
-			//this.sortAlgorithm = new SelectionSort(Items);
-			//this.sortAlgorithm = new InsertionSort(Items);
-			this.sortAlgorithm = new BubbleSort(Items);
+			SelectedAlgorithm = Algorithm.SelectionSort;
+			this.canExecuteSortStep = () => !(this.sortAlgorithm is TreeSort);
 			SortCommand = new RelayCommand((_) => this.sortAlgorithm.Sort());
-			SortStepCommand = new RelayCommand((_) => this.sortAlgorithm.SortStep());
+			SortStepCommand = new RelayCommand((_) => this.sortAlgorithm.SortStep(), this.canExecuteSortStep);
 		}
 
 		public int WindowWidth => 800;
@@ -40,9 +51,32 @@ namespace WpfSortApplication
 
 		public ObservableCollection<Item> Items { get; }
 
+		public Array Algorithms => Enum.GetValues(typeof(Algorithm));
+
+		public Algorithm SelectedAlgorithm
+		{
+			get => this.selectedAlgorithm;
+			set
+			{
+				this.selectedAlgorithm = value;
+				switch(this.selectedAlgorithm)
+				{
+					case Algorithm.SelectionSort: this.sortAlgorithm = new SelectionSort(Items); break;
+					case Algorithm.InsertionSort: this.sortAlgorithm = new InsertionSort(Items); break;
+					case Algorithm.BubbleSort: this.sortAlgorithm = new BubbleSort(Items); break;
+					case Algorithm.TreeSort: this.sortAlgorithm = new TreeSort(Items); break;
+				}
+
+				Reset();
+				NotifyPropertyChanged();
+				NotifyPropertyChanged(nameof(CanExecuteSortStep));
+			}
+		}
+
 		public ICommand ResetCommand { get; }
 		public ICommand SortCommand { get; }
 		public ICommand SortStepCommand { get; }
+		public bool CanExecuteSortStep => this.canExecuteSortStep();
 
 		private void Reset()
 		{
@@ -52,5 +86,12 @@ namespace WpfSortApplication
 
 			this.sortAlgorithm.Reset();
 		}
+
+		private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
 	}
 }

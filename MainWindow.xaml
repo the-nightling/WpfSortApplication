@@ -36,9 +36,12 @@
 		</ListBox>
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<ComboBox Width="100"
+					  ItemsSource="{Binding Algorithms}"
+					  SelectedItem="{Binding SelectedAlgorithm}" />
 			<Button Content="Reset" Command="{Binding ResetCommand}" />
 			<Button Content="Sort" Command="{Binding SortCommand}" />
-			<Button Content="Sort Step" Command="{Binding SortStepCommand}" />
+			<Button Content="Sort Step" Command="{Binding SortStepCommand}" IsEnabled="{Binding CanExecuteSortStep}" />
 		</StackPanel>
 		
 	</Grid>
