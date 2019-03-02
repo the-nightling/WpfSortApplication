@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WpfApp1
+namespace WpfSortApplication
 {
 	public class RelayCommand : ICommand
 	{

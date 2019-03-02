@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace WpfApp1
+namespace WpfSortApplication
 {
 	public class MainWindowViewModel
 	{
