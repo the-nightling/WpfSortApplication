@@ -25,11 +25,20 @@
 			</ListBox.ItemsPanel>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Rectangle Width="20" Height="{Binding Value}" Fill="{Binding ItemColor}" />
+					<Label Padding="0"
+						   HorizontalContentAlignment="Center"
+						   Width="20"
+						   Height="{Binding Value}"
+						   Background="{Binding ItemColor}"
+						   Content="{Binding Value}" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
 
-		<Button Grid.Row="1" Content="Sort" Command="{Binding SortCommand}" />
+		<StackPanel Grid.Row="1" Orientation="Horizontal">
+			<Button Content="Sort" Command="{Binding SortCommand}" />
+			<Button Content="Sort Step" Command="{Binding SortStepCommand}" />
+		</StackPanel>
+		
 	</Grid>
 </Window>
