@@ -28,9 +28,10 @@ namespace WpfSortApplication
 			ResetCommand = new RelayCommand((_) => Reset());
 
 			//this.sortAlgorithm = new SelectionSort(Items);
-			this.sortAlgorithm = new InsertionSort(Items);
-			SortCommand = new RelayCommand((_) => sortAlgorithm.Sort());
-			SortStepCommand = new RelayCommand((_) => sortAlgorithm.SortStep());
+			//this.sortAlgorithm = new InsertionSort(Items);
+			this.sortAlgorithm = new BubbleSort(Items);
+			SortCommand = new RelayCommand((_) => this.sortAlgorithm.Sort());
+			SortStepCommand = new RelayCommand((_) => this.sortAlgorithm.SortStep());
 		}
 
 		public int WindowWidth => 800;

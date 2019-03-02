@@ -10,6 +10,8 @@ namespace WpfSortApplication.SortAlgorithms
 	/// Space Complexity: O(1)
 	/// 
 	/// Stable
+	/// Worse than Insertion Sort but results in
+	/// less memory writes
 	/// 
 	/// </summary>
 	public class SelectionSort : SortAlgorithm
