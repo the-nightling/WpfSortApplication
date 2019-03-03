@@ -4,7 +4,7 @@ namespace WpfSortApplication.SortAlgorithms
 {
 	/// <summary>
 	/// Time Complexity:
-	/// - Worse: O(n^2)
+	/// - Worst: O(n^2)
 	/// - Average: Θ(n^2)
 	/// - Best: Ω(n)
 	/// Space Complexity: O(1)
@@ -48,9 +48,7 @@ namespace WpfSortApplication.SortAlgorithms
 			{
 				if (Items[j].Value > Items[j + 1].Value)
 				{
-					Item tempItem = Items[j];
-					Items[j] = Items[j + 1];
-					Items[j + 1] = tempItem;
+					Swap(j, j + 1);
 
 					endIndex = j + 1;
 				}

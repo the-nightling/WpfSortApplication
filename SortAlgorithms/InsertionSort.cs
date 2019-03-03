@@ -4,7 +4,7 @@ namespace WpfSortApplication.SortAlgorithms
 {
 	/// <summary>
 	/// Time Complexity:
-	/// - Worse: O(n^2)
+	/// - Worst: O(n^2)
 	/// - Average: Θ(n^2)
 	/// - Best: Ω(n)
 	/// Space Complexity: O(1)

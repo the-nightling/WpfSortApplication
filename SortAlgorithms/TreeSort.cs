@@ -3,6 +3,17 @@ using System.Collections.ObjectModel;
 
 namespace WpfSortApplication.SortAlgorithms
 {
+	/// <summary>
+	/// Time Complexity:
+	/// - Worst: O(n^2)
+	/// - Average: Θ(nlog(n))
+	/// - Best: Ω(nlog(n))
+	/// Space Complexity: O(n)
+	/// 
+	/// Stable
+	/// Requires memory to be allocated on the heap
+	/// 
+	/// </summary>
 	public class TreeSort : SortAlgorithm
 	{
 		private Node tree;

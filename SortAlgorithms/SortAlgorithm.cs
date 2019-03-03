@@ -17,5 +17,12 @@ namespace WpfSortApplication
 		public abstract void Reset();
 		public abstract void Sort();
 		public abstract void SortStep();
+
+		protected void Swap(int a, int b)
+		{
+			Item tempItem = Items[a];
+			Items[a] = Items[b];
+			Items[b] = tempItem;
+		}
 	}
 }

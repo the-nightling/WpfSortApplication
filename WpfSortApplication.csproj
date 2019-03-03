@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="SortAlgorithms\BubbleSort.cs" />
+    <Compile Include="SortAlgorithms\HeapSort.cs" />
     <Compile Include="SortAlgorithms\InsertionSort.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="RelayCommand.cs" />

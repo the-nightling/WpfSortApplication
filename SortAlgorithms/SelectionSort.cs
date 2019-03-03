@@ -4,7 +4,7 @@ namespace WpfSortApplication.SortAlgorithms
 {
 	/// <summary>
 	/// Time Complexity:
-	/// - Worse: O(n^2)
+	/// - Worst: O(n^2)
 	/// - Average: Θ(n^2)
 	/// - Best: Ω(n^2)
 	/// Space Complexity: O(1)
@@ -46,11 +46,7 @@ namespace WpfSortApplication.SortAlgorithms
 			int minIndex = FindMinIndex(i);
 
 			if (minIndex != i)
-			{
-				Item tempItem = Items[i];
-				Items[i] = Items[minIndex];
-				Items[minIndex] = tempItem;
-			}
+				Swap(i, minIndex);
 		}
 
 		int FindMinIndex(int arrayStartIndex)
