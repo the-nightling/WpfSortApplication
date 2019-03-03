@@ -60,6 +60,7 @@
     <Compile Include="SortAlgorithms\InsertionSort.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="SortAlgorithms\MergeSort.cs" />
     <Compile Include="SortAlgorithms\QuickSort.cs" />
     <Compile Include="SortAlgorithms\SelectionSort.cs" />
     <Compile Include="SortAlgorithms\SortAlgorithm.cs" />

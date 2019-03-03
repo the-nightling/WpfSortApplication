@@ -15,7 +15,8 @@ namespace WpfSortApplication
 		BubbleSort,
 		TreeSort,
 		HeapSort,
-		QuickSort
+		QuickSort,
+		MergeSort
 	}
 
 	public class MainWindowViewModel : INotifyPropertyChanged
@@ -42,7 +43,7 @@ namespace WpfSortApplication
 			ResetCommand = new RelayCommand((_) => Reset());
 
 			SelectedAlgorithm = Algorithm.SelectionSort;
-			this.canExecuteSortStep = () => !(this.sortAlgorithm is TreeSort) && !(this.sortAlgorithm is HeapSort) && !(this.sortAlgorithm is QuickSort);
+			this.canExecuteSortStep = () => (this.sortAlgorithm is SelectionSort) || (this.sortAlgorithm is InsertionSort) || (this.sortAlgorithm is BubbleSort);
 			SortCommand = new RelayCommand((_) => this.sortAlgorithm.Sort());
 			SortStepCommand = new RelayCommand((_) => this.sortAlgorithm.SortStep(), this.canExecuteSortStep);
 		}
@@ -69,6 +70,7 @@ namespace WpfSortApplication
 					case Algorithm.TreeSort: this.sortAlgorithm = new TreeSort(Items); break;
 					case Algorithm.HeapSort: this.sortAlgorithm = new HeapSort(Items); break;
 					case Algorithm.QuickSort: this.sortAlgorithm = new QuickSort(Items); break;
+					case Algorithm.MergeSort: this.sortAlgorithm = new MergeSort(Items); break;
 				}
 
 				Reset();
